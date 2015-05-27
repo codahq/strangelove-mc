@@ -41,3 +41,21 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+.svn/entries
+.svn/format
+*.svn-base
+.svn/wc.db
+CREDITS-fml.txt
+eclipse/
+.gradle/
+bin/
+build/
+eclipse/
+gradle/
+gradlew
+gradlew.bat
+forge-1.8-11.14.1.1418-changelog.txt
+LICENSE-fml.txt
+MinecraftForge-Credits.txt
+MinecraftForge-License.txt
+README.txt
