@@ -1,6 +1,7 @@
 package me.bendy.strangelove.items;
 
 import me.bendy.strangelove.constants.Constants;
+import me.bendy.strangelove.world.RocketExplosion;
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.item.EntityItem;
@@ -12,6 +13,7 @@ import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
 
 import java.util.Random;
@@ -35,32 +37,11 @@ public class ItemRocket extends Item {
         if (objectPosition != null) {
             BlockPos blockPos = objectPosition.getBlockPos();
 
-            throwInventory(worldIn, playerIn, blockPos.getX(), blockPos.getY(), blockPos.getZ());
-            worldIn.createExplosion(playerIn, blockPos.getX(), blockPos.getY(), blockPos.getZ(), 3.0f, true);
+            Explosion explosion = new RocketExplosion(worldIn, playerIn, blockPos.getX(), blockPos.getY(), blockPos.getZ(), 5.0f, true, true);
+            explosion.doExplosionA();
+            explosion.doExplosionB(true);
         }
 
         return super.onItemRightClick(itemStackIn, worldIn, playerIn);
-    }
-
-    private void throwInventory(World world, EntityPlayer player, float x, float y, float z) {
-        Random rand = new Random();
-        int inventorySize = player.inventory.getSizeInventory();
-        for (int i = 0; i < inventorySize; i++) {
-            ItemStack inventoryStack = player.inventory.getStackInSlot(i);
-
-            if (inventoryStack != null) {
-                ItemStack itemStack = new ItemStack(inventoryStack.getItem(), 1);
-                EntityItem entityitem = new EntityItem(world, x, y + 1.5f, z, itemStack);
-
-                // Might need some adjustments
-                float f = rand.nextFloat() * 0.5F;
-                float f1 = rand.nextFloat() * (float)Math.PI * 2.0F;
-                entityitem.motionX = (double)(-MathHelper.sin(f1) * f);
-                entityitem.motionZ = (double)(MathHelper.cos(f1));
-                entityitem.motionY = 0.8;
-
-                player.joinEntityItemWithWorld(entityitem);
-            }
-        }
     }
 }
