@@ -2,6 +2,7 @@ package me.bendy.strangelove;
 
 import me.bendy.strangelove.common.CommonProxy;
 import me.bendy.strangelove.constants.Constants;
+import me.bendy.strangelove.items.ItemRocket;
 import me.bendy.strangelove.entity.passive.EntityRocket;
 import me.bendy.strangelove.items.ItemEntityTest;
 import net.minecraft.item.Item;
@@ -10,11 +11,15 @@ import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 @Mod(modid = Constants.modid, name = "Bendy Strangelove", version = Constants.version)
 public class Strangelove {
+
+	ItemRocket itemRocket = new ItemRocket();
 
 	public static Item entityTest = new ItemEntityTest();
 
@@ -29,9 +34,14 @@ public class Strangelove {
 
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
+		preInit();
 
 		registerEntity(EntityRocket.class, Constants.ROCKET);
 		GameRegistry.registerItem(entityTest, Constants.ROCKET);
+	}
+
+	private void preInit() {
+		GameRegistry.registerItem(itemRocket, Constants.ROCKET, Constants.modid);
 	}
 
 	/**
