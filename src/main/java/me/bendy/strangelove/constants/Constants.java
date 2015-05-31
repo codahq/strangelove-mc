@@ -4,4 +4,6 @@ public class Constants
 {
 	public static final String modid = "pearlmod";
 	public static final String version = "0.3.0.16";
+	
+	public static final String ROCKET = "rocket";
 }
