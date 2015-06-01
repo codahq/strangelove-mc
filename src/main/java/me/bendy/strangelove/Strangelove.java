@@ -36,12 +36,12 @@ public class Strangelove {
 	public void preInit(FMLPreInitializationEvent event) {
 		preInit();
 
-		registerEntity(EntityRocket.class, Constants.ROCKET);
-		GameRegistry.registerItem(entityTest, Constants.ROCKET);
+		registerEntity(EntityRocket.class, Constants.ROCKET);		
 	}
 
 	private void preInit() {
 		GameRegistry.registerItem(itemRocket, Constants.ROCKET, Constants.modid);
+		GameRegistry.registerItem(entityTest, "entity_test");
 	}
 
 	/**
